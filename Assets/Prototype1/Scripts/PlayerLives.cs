@@ -21,8 +21,12 @@ public class PlayerLives : MonoBehaviour
         if (currentLives <= 0)
         {
             currentLives = 0;
-            FindObjectOfType<SurvivalTimer>().PlayerDied();
-            Debug.Log("Player Out of Lives");
+
+            SurvivalTimer timer = FindObjectOfType<SurvivalTimer>();
+            timer.PlayerDied(); // stop timer
+
+            EndScreen endScreen = FindObjectOfType<EndScreen>();
+            endScreen.ShowEndScreen(timer.timeSurvived); // show end screen
         }
     }
 }
